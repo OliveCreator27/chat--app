@@ -25,10 +25,48 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Box with Close Button</title>
+    <style>
+        #info-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            padding: 20px;
+            background-color: solid black;
+            border: 30px light blue;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            background-color: light blue;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
     <!-- Info Box (Bottom Right) -->
     <div id="info-box">
+        <button class="close-btn" onclick="closeInfoBox()">X</button>
         <h3>Info</h3>
         <p>This chat website was made by Oliver S, please enter your username and then you can start typing! If you have any suggestions for me to add things or change things simply text me or the gc, while this is open to the public in the future I could add a password system to block the website for anyone who doesn't know the code, or other features in the future like optional notifications, or separate chats! Thank you for using my website!!</p>
     </div>
+
+    <script>
+        function closeInfoBox() {
+            // Find the info box and hide it
+            var infoBox = document.getElementById('info-box');
+            infoBox.style.display = 'none';
+        }
+    </script>
+
 </body>
 </html>
