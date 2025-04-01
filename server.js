@@ -1,27 +1,32 @@
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
-const path = require('path');
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-// Serve static files (like index.html)
-app.use(express.static(path.join(__dirname)));
+app.use(express.static('public')); // Serve static files from the public folder
 
-// Handle WebSocket connections
 io.on('connection', (socket) => {
-    console.log('A user connected');
-    socket.on('message', (msg) => {
-        io.emit('message', msg);
+    console.log('a user connected');
+    
+    // When a user joins with a username
+    socket.on('user-joined', (username) => {
+        console.log(`${username} joined the chat`);
+        io.emit('user-joined', username); // Notify all users that someone has joined
     });
+
+    // When a user sends a chat message
+    socket.on('chat-message', (data) => {
+        io.emit('chat-message', data); // Send the message to all users
+    });
+
     socket.on('disconnect', () => {
-        console.log('A user disconnected');
+        console.log('a user disconnected');
     });
 });
 
-const PORT = 3000;
-server.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+server.listen(3000, () => {
+    console.log('listening on *:3000');
 });
