@@ -3,17 +3,17 @@ const socket = io();
 let username = ''; // Empty username at first
 
 function setUsername() {
-    username = document.getElementById('username').value;
-    
+    let usernameInput = document.getElementById('username');
+    username = usernameInput.value.trim().substring(0, 15); // Trim input to 15 characters
+
     if (username) {
-        // Hide the username input area and show the chat
+        usernameInput.value = username; // Update field if trimmed
         document.getElementById('username-container').style.display = 'none';
         document.getElementById('chat-container').style.display = 'block';
-        
-        // Notify the server that the user has joined with their username
         socket.emit('user-joined', username);
     }
 }
+
 
 document.getElementById('send-button').addEventListener('click', () => {
     const message = document.getElementById('message-input').value;
@@ -38,4 +38,20 @@ socket.on('user-joined', (username) => {
     messageElement.classList.add('message');
     messageElement.textContent = `${username} has joined the chat!`;
     document.getElementById('messages').appendChild(messageElement);
+});
+// This limits the username input to 15 characters
+document.addEventListener("DOMContentLoaded", function() {
+    let usernameField = document.getElementById("username");
+    let warning = document.getElementById("warning");
+
+    if (usernameField && warning) { // Prevents errors if elements are missing
+        usernameField.addEventListener("input", function() {
+            if (usernameField.value.length > 15) {
+                usernameField.value = usernameField.value.substring(0, 15);
+                warning.style.display = "block"; // Show warning message
+            } else {
+                warning.style.display = "none"; // Hide warning message
+            }
+        });
+    }
 });

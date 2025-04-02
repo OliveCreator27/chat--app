@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat App</title>
+
     <link rel="stylesheet" href="styles.css">
+
+    <script src="script.js" defer></script>
+
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
     <!-- Username Input Form -->
     <div id="username-container">
-        <input type="text" id="username" placeholder="Enter your username" />
+        <input type="text" id="username" placeholder="Enter your username(Limit is 15 charicters)" />
         <button onclick="setUsername()">Join Chat</button>
     </div>
 
@@ -113,7 +117,7 @@
     <div id="update-box">
         <button class="close-btn" onclick="closeUpdateBox()">X</button>
         <h3>Update Log</h3>
-        <p>Curently in version 1.1<br>(In order of newest to oldest)<br>Updates:<br><br>4/1/2025: Added Update Log and added tab icon<br><br>3/31/2025: Made web code and puplished beta 1.0</p>
+        <p>Curently in version 1.1<br>(In order of newest to oldest)<br>Updates:<br><br>4/1/2025: Added Update Log, added tab icon, and added username 15 charicter limit<br><br>3/31/2025: Made web code and puplished beta 1.0</p>
     </div>
 
     <script>

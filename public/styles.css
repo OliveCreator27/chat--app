@@ -67,6 +67,7 @@ body {
 
 /* Username input form styles */
 #username-container {
+    width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -78,6 +79,7 @@ body {
 }
 
 #username-container input {
+    width: 300px;
     padding: 10px;
     border-radius: 5px;
     border: none;
