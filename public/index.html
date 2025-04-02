@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat App</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
     <!-- Username Input Form -->
@@ -38,14 +39,24 @@
             background-color: solid black;
             border: 30px light blue;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #update-box {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 300px;
+            padding: 20px;
+            background-color: solid black;
+            border: 30px light blue;
+            border-radius: 10px;
         }
         .close-btn {
             position: absolute;
             top: 10px;
             right: 10px;
             font-size: 18px;
-            background-color: light blue;
+            background-color: transparent;
+            foreground-color: light blue;
             border: none;
             cursor: pointer;
         }
@@ -65,6 +76,50 @@
             // Find the info box and hide it
             var infoBox = document.getElementById('info-box');
             infoBox.style.display = 'none';
+        }
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update Box with Close Button</title>
+    <style>
+        #update-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            padding: 20px;
+            background-color: solid black;
+            foreground-color: light blue;
+            border: 30px light blue;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Update Box (Bottom Left) -->
+    <div id="update-box">
+        <button class="close-btn" onclick="closeUpdateBox()">X</button>
+        <h3>Update Log</h3>
+        <p>Curently in version 1.1<br>(In order of newest to oldest)<br>Updates:<br><br>4/1/2025: Added Update Log and added tab icon<br><br>3/31/2025: Made web code and puplished beta 1.0</p>
+    </div>
+
+    <script>
+        function closeUpdateBox() {
+            // Find the update box and hide it
+            var updateBox = document.getElementById('update-box');
+            updateBox.style.display = 'none';
         }
     </script>
 
