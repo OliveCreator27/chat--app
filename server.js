@@ -6,20 +6,19 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-app.use(express.static('public')); // Serve static files from the public folder
+app.use(express.static('public'));
 
 io.on('connection', (socket) => {
     console.log('a user connected');
-    
-    // When a user joins with a username
+
     socket.on('user-joined', (username) => {
         console.log(`${username} joined the chat`);
-        io.emit('user-joined', username); // Notify all users that someone has joined
+        io.emit('user-joined', username);
     });
 
     // When a user sends a chat message
     socket.on('chat-message', (data) => {
-        io.emit('chat-message', data); // Send the message to all users
+        io.emit('chat-message', data);
     });
 
     socket.on('disconnect', () => {

@@ -160,3 +160,7 @@ body {
             border: none;
             cursor: pointer;
         }
+#top-left-icon img{
+  width: 150px;
+  hight: auto;
+}

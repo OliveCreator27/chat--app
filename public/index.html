@@ -1,132 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat App</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat App</title>
 
-    <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js" defer></script>
 
-    <script src="script.js" defer></script>
-
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/png" href="favicon.png">
-</head>
-<body>
-    <!-- Username Input Form -->
-    <div id="username-container">
-        <input type="text" id="username" placeholder="Enter your username(Limit is 15 charicters)" />
-        <button onclick="setUsername()">Join Chat</button>
-    </div>
-
-    <!-- Chat Container -->
-    <div id="chat-container" style="display: none;">
-        <div id="messages"></div>
-        <div id="message-form">
-            <input type="text" id="message-input" placeholder="Type a message...">
-            <button id="send-button">Send</button>
-        </div>
-    </div>
-
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="script.js"></script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Info Box with Close Button</title>
-    <style>
-        #info-box {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
-            padding: 20px;
-            background-color: solid black;
-            border: 30px light blue;
-            border-radius: 10px;
-        }
-        #update-box {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 300px;
-            padding: 20px;
-            background-color: solid black;
-            border: 30px light blue;
-            border-radius: 10px;
-        }
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 18px;
-            background-color: transparent;
-            foreground-color: light blue;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
+  <style>
+    #info-box, #update-box {
+      position: fixed;
+      bottom: 20px;
+      width: 300px;
+      padding: 20px;
+      background-color: black;
+      color: lightblue;
+      border: 2px solid lightblue;
+      border-radius: 10px;
+    }
+    #info-box {
+      right: 20px;
+    }
+    #update-box {
+      left: 20px;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 18px;
+      background-color: transparent;
+      color: lightblue;
+      border: none;
+      cursor: pointer;
+    }
+    #top-left-icon {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Info Box (Bottom Right) -->
-    <div id="info-box">
-        <button class="close-btn" onclick="closeInfoBox()">X</button>
-        <h3>Info</h3>
-        <p>This chat website was made by Oliver S, please enter your username and then you can start typing! If you have any suggestions for me to add things or change things simply text me or the gc, while this is open to the public in the future I could add a password system to block the website for anyone who doesn't know the code, or other features in the future like optional notifications, or separate chats! Thank you for using my website!!</p>
+  <!-- Top Left Image-->
+  <div id="top-left-icon">
+    <img src="images/chatAppIconTopRight.png" alt="chat icon">
+  </div>
+
+  <!-- Username Input Form -->
+  <div id="username-container">
+    <input type="text" id="username" placeholder="Enter your username (Limit is 15 characters)" />
+    <button onclick="setUsername()">Join Chat</button>
+  </div>
+
+  <!-- Chat Container -->
+  <div id="chat-container" style="display: none;">
+    <div id="messages"></div>
+    <div id="message-form">
+      <input type="text" id="message-input" placeholder="Type a message...">
+      <button id="send-button">Send</button>
     </div>
+  </div>
 
-    <script>
-        function closeInfoBox() {
-            // Find the info box and hide it
-            var infoBox = document.getElementById('info-box');
-            infoBox.style.display = 'none';
-        }
-    </script>
+  <!-- Info Box (Bottom Right) -->
+  <div id="info-box">
+    <button class="close-btn" onclick="closeInfoBox()">X</button>
+    <h3>Info</h3>
+    <p>This chat website was made by Oliver S, please enter your username and then you can start typing! If you have any suggestions for me to add things or change things simply text me or the gc...</p>
+  </div>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>update Box with Close Button</title>
-    <style>
-        #update-box {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
-            padding: 20px;
-            background-color: solid black;
-            foreground-color: light blue;
-            border: 30px light blue;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 18px;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
+  <!-- Update Box (Bottom Left) -->
+  <div id="update-box">
+    <button class="close-btn" onclick="closeUpdateBox()">X</button>
+    <h3>Update Log</h3>
+    <p>Currently in version 1.2<br>Updates:<br>4/5/2025: Added icon in top left corner<br>4/1/2025: Added Update Log, tab icon, username limit<br>3/31/2025: Made web code and published beta 1.0</p>
+  </div>
 
-    <!-- Update Box (Bottom Left) -->
-    <div id="update-box">
-        <button class="close-btn" onclick="closeUpdateBox()">X</button>
-        <h3>Update Log</h3>
-        <p>Curently in version 1.1<br>(In order of newest to oldest)<br>Updates:<br><br>4/1/2025: Added Update Log, added tab icon, and added username 15 charicter limit<br><br>3/31/2025: Made web code and puplished beta 1.0</p>
-    </div>
-
-    <script>
-        function closeUpdateBox() {
-            // Find the update box and hide it
-            var updateBox = document.getElementById('update-box');
-            updateBox.style.display = 'none';
-        }
-    </script>
+  <script>
+    function closeInfoBox() {
+      document.getElementById('info-box').style.display = 'none';
+    }
+    function closeUpdateBox() {
+      document.getElementById('update-box').style.display = 'none';
+    }
+  </script>
 
 </body>
 </html>
