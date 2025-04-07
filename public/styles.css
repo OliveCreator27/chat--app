@@ -1,23 +1,23 @@
-/* Body styling */
+/* This is how to do a comment */
 body {
     font-family: Arial, sans-serif;
-    background-color: #121212; /* Dark background */
-    color: #fff; /* Light text */
+    background-color: #121212;
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+    margin: 10px;
 }
-
+                                        /* # is used to adress ONE element . is used to adrress MULTIPLE so you can set a class to something and then use . to effect all with that class */
 /* Chat container styles */
 #chat-container {
     width: 80%;
     max-width: 600px;
-    border: 2px solid #2C3E50;
+    border: 2px solid #007aab;
     border-radius: 10px;
     background-color: #1A1A1A;
-    padding: 20px;
+    padding: 20px;                     /* Padding is like a margin inside the boxes that effects all sides or padding-top or other sides to do respective sides */
     margin-bottom: 20px;
 }
 
@@ -30,7 +30,7 @@ body {
 }
 
 .message {
-    background-color: #3498db;
+    background-color: #007aab;
     color: white;
     padding: 10px;
     border-radius: 15px;
@@ -58,7 +58,7 @@ body {
 
 #send-button {
     padding: 10px 20px;
-    background-color: #3498db;
+    background-color: #007aab;
     color: white;
     border: none;
     border-radius: 5px;
@@ -90,7 +90,7 @@ body {
 
 #username-container button {
     padding: 10px 20px;
-    background-color: #3498db;
+    background-color: #007aab;
     color: white;
     border: none;
     border-radius: 5px;
@@ -103,20 +103,21 @@ body {
     bottom: 20px;
     right: 20px;
     width: 300px;
-    background-color: #1A1A1A; /* Black inside */
+    background-color: #1A1A1A;
     color: white;
     padding: 20px;
     border-radius: 10px;
-    border: 4px solid #3498db; /* Blue outline */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 4px solid #007aab;
     font-size: 14px;
     z-index: 9999;
+    max-height: 200px;
+    height: 200px;
 }
 
 #info-box h3 {
     margin-top: 0;
     font-size: 18px;
-    color: #3498db; /* Blue title */
+    color: #007aab; /* Title color */
 }
 
 #info-box p {
@@ -130,37 +131,60 @@ body {
     bottom: 20px;
     left: 20px;
     width: 300px;
-    background-color: #1A1A1A; /* Black inside */
+    overflow: auto;
+    background-color: #1A1A1A;
     color: white;
     padding: 20px;
     border-radius: 10px;
-    border: 4px solid #3498db; /* Blue outline */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 4px solid #007aab;
     font-size: 14px;
     z-index: 9999;
+    max-height: 200px;
+    height: 200px;
+    white-space: nowrap; /* This stopes it from breaking the line */
 }
 
 #update-box h3 {
     margin-top: 0;
     font-size: 18px;
-    color: #3498db; /* Blue title */
+    color: #007aab;
 }
 
 #update-box p {
-    margin: 10px 0;
+    padding: 5px;
     line-height: 1.5;
 }
 .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 18px;
-            background-color: transparent;
-            color: #3498db;
-            border: none;
-            cursor: pointer;
-        }
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  background-color: transparent;
+  color: #007aab;
+  border: none;
+  cursor: pointer;
+}
 #top-left-icon img{
   width: 150px;
-  hight: auto;
+  height: auto;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-corner {
+  background: transparent;
 }
