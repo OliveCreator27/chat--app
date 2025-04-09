@@ -8,10 +8,13 @@ const io = socketIo(server);
 
 app.use(express.static('public'));
 
+const users = {}; // Track users by their socket ID
+
 io.on('connection', (socket) => {
     console.log('a user connected');
 
     socket.on('user-joined', (username) => {
+        users[socket.id] = username; // Save username linked to socket
         console.log(`${username} joined the chat`);
         io.emit('user-joined', username);
     });
@@ -22,7 +25,14 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        console.log('a user disconnected');
+        const username = users[socket.id];
+        if (username) {
+            console.log(`${username} disconnected`);
+            socket.broadcast.emit('user-left', username); // Let others know
+            delete users[socket.id]; // Clean up
+        } else {
+            console.log('a user disconnected (username not set)');
+        }
     });
 });
 
